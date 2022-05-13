@@ -4,10 +4,16 @@
 const stripe = Stripe(stripePublicKey);
 
 // The items the customer wants to buy
-const items = [{
-    // id: "xl-tshirt"
+
+// const items = [{
+//     id: "xl-tshirt",
+//     // amount: amount
+//
+// }];
+
+const purchase = {
     amount: amount
-}];
+};
 
 let elements;
 
@@ -23,14 +29,17 @@ async function initialize() {
     const response = await fetch("/create-payment-intent", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ items }),
+        body: JSON.stringify(purchase),
+        // body: JSON.stringify({ items }),
     });
+
     const { clientSecret } = await response.json();
 
     const appearance = {
         theme: 'stripe',
     };
-    elements = stripe.elements({ appearance, clientSecret });
+
+    elements = stripe.elements({ appearance, clientSecret});
 
     const paymentElement = elements.create("payment");
     paymentElement.mount("#payment-element");
@@ -45,7 +54,7 @@ async function handleSubmit(e) {
         confirmParams: {
             // Make sure to change this to your payment completion page
             return_url: "http://localhost:8080/",
-            receipt_email: document.getElementById("email").value,
+            receipt_email: email,
         },
     });
 

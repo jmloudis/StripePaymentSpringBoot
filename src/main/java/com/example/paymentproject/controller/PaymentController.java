@@ -1,6 +1,7 @@
 package com.example.paymentproject.controller;
 
 import com.example.paymentproject.model.CheckoutForm;
+import com.example.paymentproject.model.Payment;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,9 +18,12 @@ public class PaymentController {
     @Value("${stripe.public.key}")
     private String stripePublicKey;
 
+
+
     @GetMapping("/")
     public String home(Model model){
         model.addAttribute("checkoutForm", new CheckoutForm());
+//        model.addAttribute("amount", checkoutForm.getAmount());
         return "/index";
     }
 
@@ -29,14 +33,17 @@ public class PaymentController {
         return "/index";
     }
     model.addAttribute("stripePublicKey", stripePublicKey);
-    return "redirect:/checkout";
+    model.addAttribute("amount", checkoutForm.getAmount());
+//    model.addAttribute("email", checkoutForm.getEmail());
+
+        return "/checkout";
     }
 
-//    @GetMapping("/checkout")
-//    public String checkoutPage(Model model){
-//        model.addAttribute("stripePublicKey", stripePublicKey);
-//        return "/checkout";
-//    }
+    @GetMapping("/checkout")
+    public String checkoutPage(Model model){
+        model.addAttribute("stripePublicKey", stripePublicKey);
+        return "/checkout";
+    }
 
     @GetMapping("/home")
     public String returnHome(Model model){

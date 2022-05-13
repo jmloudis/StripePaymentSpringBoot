@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en" xmlns='http://www.w3.org/1999/xhtml' xmlns:th='http://www.thymeleaf.org' >
 <head>
     <meta charset="utf-8" />
     <title>Accept a payment</title>
@@ -10,16 +10,20 @@
         /*<![CDATA[*/
         var stripePublicKey = /*[[${stripePublicKey}]]*/ null;
         var amount = /*[[${amount}]]*/ null;
+        var email = /*[[${email}]]*/ null;
 
         /*]]>*/
     </script>
     <script src="https://js.stripe.com/v3/"></script>
     <script src="checkout.js" defer></script>
+
+
 </head>
 
 <body>
 <!-- Display a payment form -->
 <form id="payment-form">
+    <p>If you hit the pay button, you will be billed <span th:text="${amount}">[xx]</span>dollars</p>
     <!--  <p>Give me money. Money Me. Money Now. Me a money needing a lot now. <br> - Charlie Kelly</p>-->
 <!--    <label for="email">Email Address</label>-->
 <!--    <input type="text" id="email" placeholder="Enter email address" required/>-->
