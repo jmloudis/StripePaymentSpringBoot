@@ -6,11 +6,7 @@ import javax.validation.constraints.NotNull;
 public class Payment {
 
     @NotNull
-    @Min(4)
     private Integer amount;
-
-    @NotNull
-    private String featureRequest;
 
     public Integer getAmount() {
         return amount;
@@ -20,11 +16,4 @@ public class Payment {
         this.amount = amount;
     }
 
-    public String getFeatureRequest() {
-        return featureRequest;
-    }
-
-    public void setFeatureRequest(String featureRequest) {
-        this.featureRequest = featureRequest;
-    }
 }
