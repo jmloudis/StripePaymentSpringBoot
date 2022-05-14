@@ -23,7 +23,6 @@ public class PaymentController {
     @GetMapping("/")
     public String home(Model model){
         model.addAttribute("checkoutForm", new CheckoutForm());
-//        model.addAttribute("amount", checkoutForm.getAmount());
         return "/index";
     }
 
@@ -34,7 +33,8 @@ public class PaymentController {
     }
     model.addAttribute("stripePublicKey", stripePublicKey);
     model.addAttribute("amount", checkoutForm.getAmount());
-//    model.addAttribute("email", checkoutForm.getEmail());
+    model.addAttribute("email", checkoutForm.getEmail());
+    model.addAttribute("featureRequest", checkoutForm.getFeatureRequest());
 
         return "/checkout";
     }

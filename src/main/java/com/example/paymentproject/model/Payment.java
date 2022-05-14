@@ -8,6 +8,17 @@ public class Payment {
     @NotNull
     private Integer amount;
 
+    @NotNull
+    private String featureRequest;
+
+    public String getFeatureRequest() {
+        return featureRequest;
+    }
+
+    public void setFeatureRequest(String featureRequest) {
+        this.featureRequest = featureRequest;
+    }
+
     public Integer getAmount() {
         return amount;
     }
