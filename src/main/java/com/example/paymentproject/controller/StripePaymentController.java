@@ -19,6 +19,7 @@ public class StripePaymentController {
 
         PaymentIntentCreateParams params = new PaymentIntentCreateParams.Builder()
                         .setCurrency("usd")
+                        .putMetadata("featureRequest", payment.getFeatureRequest())
                         .setAmount(payment.getAmount() * 100L) //createPayment... dollar amount * cents ... 15 * 100 cents = 15$
                         .setAutomaticPaymentMethods(
                         PaymentIntentCreateParams.AutomaticPaymentMethods

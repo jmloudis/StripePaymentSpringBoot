@@ -12,7 +12,8 @@ const stripe = Stripe(stripePublicKey);
 // }];
 
 const purchase = {
-    amount: amount
+    amount: amount,
+    featureRequest: featureRequest
 };
 
 let elements;
@@ -30,6 +31,7 @@ async function initialize() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(purchase),
+
         // body: JSON.stringify({ items }),
     });
 
@@ -54,8 +56,19 @@ async function handleSubmit(e) {
         confirmParams: {
             // Make sure to change this to your payment completion page
             return_url: "http://localhost:8080/",
-            receipt_email: email,
+            payment_method_data: {
+                billing_details: {
+                    email: email
+                },
+            },
+            receipt_email: email
+            // email: email,
+
         },
+
+
+
+
     });
 
     // This point will only be reached if there is an immediate error when
