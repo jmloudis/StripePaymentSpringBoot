@@ -62,7 +62,8 @@ async function handleSubmit(e) {
                 },
             },
             receipt_email: email
-            // email: email,
+
+            // receipt_email: document.getElementById('email').value
 
         },
 
